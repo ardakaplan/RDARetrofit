@@ -1,13 +1,13 @@
-package com.ardakaplan.rdalibrary.request.retrofit;
+package com.ardakaplan.rdaretrofitlib.retrofit;
 
 import android.support.annotation.Nullable;
 
-import com.ardakaplan.rdalibrary.request.requestException.NoNetworkRDARequestException;
-import com.ardakaplan.rdalibrary.request.requestException.NotFoundRDARequestException;
-import com.ardakaplan.rdalibrary.request.requestException.NullResponseRDARequestException;
-import com.ardakaplan.rdalibrary.request.requestException.RDARequestException;
-import com.ardakaplan.rdalibrary.request.requestException.ServerRDARequestException;
-import com.ardakaplan.rdalibrary.request.requestException.UnknownRDARequestException;
+import com.ardakaplan.rdaretrofitlib.requestException.NoNetworkRDARequestException;
+import com.ardakaplan.rdaretrofitlib.requestException.NotFoundRDARequestException;
+import com.ardakaplan.rdaretrofitlib.requestException.NullResponseRDARequestException;
+import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
+import com.ardakaplan.rdaretrofitlib.requestException.ServerRDARequestException;
+import com.ardakaplan.rdaretrofitlib.requestException.UnknownRDARequestException;
 
 import java.net.UnknownHostException;
 

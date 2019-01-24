@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.request.retrofit;
+package com.ardakaplan.rdaretrofitlib.retrofit;
 
 import com.google.gson.GsonBuilder;
 
