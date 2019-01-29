@@ -30,4 +30,30 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //RDA LIB
+    if (use_rda_lib_local) {
+
+        println("RDALibray -> LOCAL COPY")
+
+        implementation files(devDir + '/' + RDA_LIB_AAR_NAME)
+
+        //RDALOGGER
+        implementation 'com.github.ardakaplan:RDALogger:1.0.0'
+
+        //RETROFIT
+        implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+        implementation "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
+        implementation "com.squareup.retrofit2:converter-scalars:$retrofit_converter_scalars_version"
+        implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
+
+        //SWIPE LIST
+        implementation "com.daimajia.swipelayout:library:$swipe_layout_version"
+
+    } else {
+
+        println("RDALibray -> CLOUD")
+
+        implementation 'com.github.ardakaplan:RDALibrary:withDagger-SNAPSHOT'
+    }
 }
