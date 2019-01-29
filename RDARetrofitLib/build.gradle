@@ -1,13 +1,14 @@
 apply plugin: 'com.android.library'
+apply from: '../deployment.gradle'
 
 android {
 
-    compileSdkVersion 28
+    compileSdkVersion androidCompileSdkVersion
 
     defaultConfig {
 
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 1
         versionName "1.0.0"
 
@@ -24,11 +25,18 @@ android {
 
 dependencies {
 
-    //RETROFIT
-    compileOnly 'com.squareup.retrofit2:retrofit:2.4.0'
-    compileOnly 'com.squareup.retrofit2:converter-gson:2.4.0'
-    compileOnly 'com.squareup.retrofit2:converter-scalars:2.1.0'
-    compileOnly 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    //ANDROID SUPPORT
+    compileOnly "com.android.support:appcompat-v7:$android_support_version"
 
-    compileOnly 'com.android.support:appcompat-v7:28.0.0'
+    //RETROFIT
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
+    api "com.squareup.retrofit2:converter-scalars:$retrofit_converter_scalars_version"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
+
+    //DAGGER
+    compileOnly "com.google.dagger:dagger:$dagger_version"
+    compileOnly "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 }
