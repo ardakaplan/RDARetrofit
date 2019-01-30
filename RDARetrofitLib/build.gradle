@@ -21,12 +21,16 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
 
-    //ANDROID SUPPORT
-    compileOnly "com.android.support:appcompat-v7:$android_support_version"
+    compileOnly "com.github.ardakaplan:RDALibrary:$rda_lib_version"
 
     //RETROFIT
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -35,8 +39,6 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
 
     //DAGGER
-    compileOnly "com.google.dagger:dagger:$dagger_version"
-    compileOnly "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 }

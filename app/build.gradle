@@ -1,20 +1,31 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+
+    compileSdkVersion androidCompileSdkVersion
+
     defaultConfig {
+
         applicationId "com.ardakaplan.rdaretrofit"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
+
         release {
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -25,9 +36,10 @@ dependencies {
     //ANDROID SUPPORT
     implementation "com.android.support:appcompat-v7:$android_support_version"
 
+    //BUTTER KNIFE
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
+
     //DAGGER
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
@@ -41,12 +53,6 @@ dependencies {
         //RDALOGGER
         implementation 'com.github.ardakaplan:RDALogger:1.0.0'
 
-        //RETROFIT
-        implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-        implementation "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
-        implementation "com.squareup.retrofit2:converter-scalars:$retrofit_converter_scalars_version"
-        implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
-
         //SWIPE LIST
         implementation "com.daimajia.swipelayout:library:$swipe_layout_version"
 
@@ -54,6 +60,6 @@ dependencies {
 
         println("RDALibray -> CLOUD")
 
-        implementation 'com.github.ardakaplan:RDALibrary:withDagger-SNAPSHOT'
+        implementation "com.github.ardakaplan:RDALibrary:$rda_lib_version"
     }
 }
