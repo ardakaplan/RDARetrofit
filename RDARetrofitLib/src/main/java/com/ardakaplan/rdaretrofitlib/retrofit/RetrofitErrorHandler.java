@@ -11,14 +11,22 @@ import com.ardakaplan.rdaretrofitlib.requestException.UnknownRDARequestException
 
 import java.net.UnknownHostException;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import retrofit2.Response;
 
 /**
  * Created by Arda Kaplan on 28-Dec-18 - 15:01
  */
+@Singleton
 public class RetrofitErrorHandler {
 
-    public static <W> RDARequestException checkError(@Nullable Response<W> response, @Nullable Throwable throwable) {
+    @Inject
+    public RetrofitErrorHandler() {
+    }
+
+    public <W> RDARequestException checkError(@Nullable Response<W> response, @Nullable Throwable throwable) {
 
         if (response != null) {
 

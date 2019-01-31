@@ -1,9 +1,18 @@
 package com.ardakaplan.rdaretrofitlib.requestException;
 
+import retrofit2.Response;
+
 /**
  * Created by Arda Kaplan on 28-Dec-18 - 15:08
  */
-public abstract class RDARequestException extends Exception {
+public abstract class RDARequestException<W> extends Exception {
+
+    protected Response<W> response;
+
+    public RDARequestException(Throwable cause, Response<W> response) {
+        super(cause);
+        this.response = response;
+    }
 
     public RDARequestException() {
         super();
