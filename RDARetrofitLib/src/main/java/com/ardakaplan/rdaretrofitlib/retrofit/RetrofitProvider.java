@@ -1,6 +1,6 @@
 package com.ardakaplan.rdaretrofitlib.retrofit;
 
-import com.ardakaplan.rdaretrofitlib.RDARequestListener;
+import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
 import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
 import com.google.gson.GsonBuilder;
 
@@ -48,8 +48,7 @@ public class RetrofitProvider {
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
     }
 
-    public <W> void createRequest(Call<W> call, RDARequestListener<W> requestListener) {
-
+    public <W> void makeRequest(Call<W> call, RDARetrofitCallback<W> rdaRetrofitCallback) {
 
         call.enqueue(new Callback<W>() {
 
@@ -60,17 +59,17 @@ public class RetrofitProvider {
 
                 if (rdaRequestException == null) {
 
-                    requestListener.onSuccess(response.body());
+                    rdaRetrofitCallback.onSuccess(response.body());
                 } else {
 
-                    requestListener.onError(rdaRequestException);
+                    rdaRetrofitCallback.onError(rdaRequestException);
                 }
             }
 
             @Override
             public void onFailure(Call<W> call, Throwable t) {
 
-                requestListener.onError(retrofitErrorHandler.checkError(null, t));
+                rdaRetrofitCallback.onError(retrofitErrorHandler.checkError(null, t));
             }
         });
     }

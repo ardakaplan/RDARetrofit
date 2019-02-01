@@ -4,6 +4,8 @@ import android.support.annotation.Nullable;
 
 import com.ardakaplan.rdaretrofit.requests.interfaces.GoogleServiceRetrofitInterfaces;
 import com.ardakaplan.rdaretrofitlib.RDARequestListener;
+import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
+import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
 import com.ardakaplan.rdaretrofitlib.retrofit.RetrofitProvider;
 
 import javax.inject.Inject;
@@ -17,7 +19,6 @@ public class GoogleService extends BaseRequest {
 
     private RetrofitProvider retrofitProvider;
 
-
     @Inject
     public GoogleService(RetrofitProvider retrofitProvider) {
         this.retrofitProvider = retrofitProvider;
@@ -25,8 +26,21 @@ public class GoogleService extends BaseRequest {
 
     public void makeRequest(@Nullable String parameter, RDARequestListener<String> rdaRequestListener) {
 
-        retrofitProvider.createRequest(
-                retrofitProvider.createRetrofit(GoogleServiceRetrofitInterfaces.class).makeRequest(),
-                rdaRequestListener);
+        retrofitProvider.makeRequest(
+                retrofitProvider.createRetrofit(GoogleServiceRetrofitInterfaces.class).makeRequest(), new RDARetrofitCallback<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+
+                        //dönen cevap parse edilecekse burada yapılır, yoksa sonuç direk set edilir
+
+                        rdaRequestListener.onSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(RDARequestException e) {
+
+                        rdaRequestListener.onError(e);
+                    }
+                });
     }
 }

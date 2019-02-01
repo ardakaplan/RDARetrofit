@@ -36,22 +36,22 @@ public class RetrofitErrorHandler {
 
                     case 404:
 
-                        return new NotFoundRDARequestException();
+                        return new NotFoundRDARequestException(throwable, response);
 
                     case 500:
 
-                        return new ServerRDARequestException();
+                        return new ServerRDARequestException(throwable, response);
 
                     default:
 
-                        return new UnknownRDARequestException();
+                        return new UnknownRDARequestException(throwable, response);
                 }
 
             } else {
 
                 if (response.body() == null) {
 
-                    return new NullResponseRDARequestException();
+                    return new NullResponseRDARequestException(throwable, response);
 
                 } else {
 
@@ -63,7 +63,7 @@ public class RetrofitErrorHandler {
 
             if (throwable instanceof UnknownHostException) {
 
-                return new NoNetworkRDARequestException();
+                return new NoNetworkRDARequestException(throwable, response);
 
             } else {
 
