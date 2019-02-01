@@ -14,7 +14,10 @@ import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofit.R;
+import com.ardakaplan.rdaretrofit.requests.GoogleService;
 import com.ardakaplan.rdaretrofit.storage.StorageManager;
+import com.ardakaplan.rdaretrofitlib.RDARequestListener;
+import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,9 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
 
     @Inject
     StorageManager storageManager;
+
+    @Inject
+    GoogleService googleService;
 
     @Override
     protected void adjustApplicationTheme() {
@@ -72,6 +78,22 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     void test() {
 
         RDALogger.info("TEST");
+
+
+        googleService.makeRequest("", new RDARequestListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+
+                RDALogger.info("ssss +" + s);
+            }
+
+            @Override
+            public void onError(RDARequestException e) {
+
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override

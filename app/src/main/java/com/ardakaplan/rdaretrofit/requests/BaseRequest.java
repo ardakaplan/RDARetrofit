@@ -9,4 +9,7 @@ public abstract class BaseRequest {
 
         public static final String BASE_URL = "https://www.google.com.tr/";
     }
+
+
+
 }

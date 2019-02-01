@@ -5,11 +5,11 @@ import retrofit2.Response;
 /**
  * Created by Arda Kaplan on 28-Dec-18 - 15:08
  */
-public abstract class RDARequestException<W> extends Exception {
+public abstract class RDARequestException extends Exception {
 
-    protected Response<W> response;
+    protected Response response;
 
-    public RDARequestException(Throwable cause, Response<W> response) {
+    public RDARequestException(Throwable cause, Response response) {
         super(cause);
         this.response = response;
     }
