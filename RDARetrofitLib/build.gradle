@@ -64,6 +64,8 @@ dependencies {
 
         println("RDALibray -> CLOUD")
 
+//        compileOnly 'com.github.ardakaplan:RDALibrary:withDagger-SNAPSHOT'
+
         compileOnly "com.github.ardakaplan:RDALibrary:$rda_lib_version"
     }
 
