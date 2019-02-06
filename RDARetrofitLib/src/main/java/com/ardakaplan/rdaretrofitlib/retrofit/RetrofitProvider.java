@@ -21,8 +21,10 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Singleton
 public class RetrofitProvider {
 
+    //public adjustable fields
     public static int TIME_OUT = 20;
     public static HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.NONE;
+    public static String BASE_URL = "http://www.google.com/";
 
     private Retrofit.Builder retrofitBuilder;
     private RetrofitErrorHandler retrofitErrorHandler;
@@ -46,7 +48,7 @@ public class RetrofitProvider {
 
         retrofitBuilder = new Retrofit.Builder()
                 .client(client)
-                .baseUrl("http://www.google.com/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
     }
