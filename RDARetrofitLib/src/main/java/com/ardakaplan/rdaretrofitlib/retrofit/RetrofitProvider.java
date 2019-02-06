@@ -21,11 +21,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Singleton
 public class RetrofitProvider {
 
+    public static int TIME_OUT = 20;
+    public static HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.NONE;
+
     private Retrofit.Builder retrofitBuilder;
     private RetrofitErrorHandler retrofitErrorHandler;
 
     @Inject
-    public RetrofitProvider(RetrofitErrorHandler retrofitErrorHandler) {
+    RetrofitProvider(RetrofitErrorHandler retrofitErrorHandler) {
 
         this.retrofitErrorHandler = retrofitErrorHandler;
 
@@ -33,12 +36,12 @@ public class RetrofitProvider {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(LOGGING_LEVEL);
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();
 
         retrofitBuilder = new Retrofit.Builder()
@@ -60,6 +63,7 @@ public class RetrofitProvider {
                 if (rdaRequestException == null) {
 
                     rdaRetrofitCallback.onSuccess(response.body());
+
                 } else {
 
                     rdaRetrofitCallback.onError(rdaRequestException);

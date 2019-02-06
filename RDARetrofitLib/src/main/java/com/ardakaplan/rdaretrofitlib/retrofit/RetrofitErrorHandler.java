@@ -23,10 +23,10 @@ import retrofit2.Response;
 public class RetrofitErrorHandler {
 
     @Inject
-    public RetrofitErrorHandler() {
+    RetrofitErrorHandler() {
     }
 
-    public <W> RDARequestException checkError(@Nullable Response<W> response, @Nullable Throwable throwable) {
+    <W> RDARequestException checkError(@Nullable Response<W> response, @Nullable Throwable throwable) {
 
         if (response != null) {
 
