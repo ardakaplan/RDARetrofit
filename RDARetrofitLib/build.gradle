@@ -67,6 +67,12 @@ dependencies {
 //        compileOnly 'com.github.ardakaplan:RDALibrary:withDagger-SNAPSHOT'
 
         compileOnly "com.github.ardakaplan:RDALibrary:$rda_lib_version"
+
+        //DAGGER
+        compileOnly "com.google.dagger:dagger:$dagger_version"
+        compileOnly "com.google.dagger:dagger-android-support:$dagger_version"
+        annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+        annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     }
 
     //RETROFIT
