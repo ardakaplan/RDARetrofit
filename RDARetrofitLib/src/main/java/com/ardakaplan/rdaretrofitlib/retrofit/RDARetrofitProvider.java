@@ -19,36 +19,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 @Singleton
-public class RetrofitProvider {
+public class RDARetrofitProvider {
+
+    public static final class RetrofitManager {
+
+        public static int TIME_OUT = 20;
+        public static HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.NONE;
+        public static String BASE_URL = "http://www.google.com/";
+    }
 
     //public adjustable fields
-    public static int TIME_OUT = 20;
-    public static HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.NONE;
-    public static String BASE_URL = "http://www.google.com/";
+
 
     private Retrofit.Builder retrofitBuilder;
-    private RetrofitErrorHandler retrofitErrorHandler;
+    private RDARetrofitErrorHandler RDARetrofitErrorHandler;
 
     @Inject
-    RetrofitProvider(RetrofitErrorHandler retrofitErrorHandler) {
+    RDARetrofitProvider(RDARetrofitErrorHandler RDARetrofitErrorHandler) {
 
-        this.retrofitErrorHandler = retrofitErrorHandler;
+        this.RDARetrofitErrorHandler = RDARetrofitErrorHandler;
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 
-        interceptor.setLevel(LOGGING_LEVEL);
+        interceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .readTimeout(TIME_OUT, TimeUnit.SECONDS)
-                .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .readTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
+                .connectTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
                 .build();
 
         retrofitBuilder = new Retrofit.Builder()
                 .client(client)
-                .baseUrl(BASE_URL)
+                .baseUrl(RetrofitManager.BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
     }
@@ -60,7 +65,7 @@ public class RetrofitProvider {
             @Override
             public void onResponse(Call<W> call, Response<W> response) {
 
-                RDARequestException rdaRequestException = retrofitErrorHandler.checkError(response, null);
+                RDARequestException rdaRequestException = RDARetrofitErrorHandler.checkError(response, null);
 
                 if (rdaRequestException == null) {
 
@@ -75,7 +80,7 @@ public class RetrofitProvider {
             @Override
             public void onFailure(Call<W> call, Throwable t) {
 
-                rdaRetrofitCallback.onError(retrofitErrorHandler.checkError(null, t));
+                rdaRetrofitCallback.onError(RDARetrofitErrorHandler.checkError(null, t));
             }
         });
     }

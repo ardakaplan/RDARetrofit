@@ -20,10 +20,10 @@ import retrofit2.Response;
  * Created by Arda Kaplan on 28-Dec-18 - 15:01
  */
 @Singleton
-public class RetrofitErrorHandler {
+public class RDARetrofitErrorHandler {
 
     @Inject
-    RetrofitErrorHandler() {
+    RDARetrofitErrorHandler() {
     }
 
     <W> RDARequestException checkError(@Nullable Response<W> response, @Nullable Throwable throwable) {

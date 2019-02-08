@@ -6,7 +6,7 @@ import com.ardakaplan.rdaretrofit.requests.interfaces.GoogleServiceRetrofitInter
 import com.ardakaplan.rdaretrofitlib.RDARequestListener;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
 import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
-import com.ardakaplan.rdaretrofitlib.retrofit.RetrofitProvider;
+import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -17,17 +17,17 @@ import javax.inject.Singleton;
 @Singleton
 public class GoogleService extends BaseRequest {
 
-    private RetrofitProvider retrofitProvider;
+    private RDARetrofitProvider RDARetrofitProvider;
 
     @Inject
-    public GoogleService(RetrofitProvider retrofitProvider) {
-        this.retrofitProvider = retrofitProvider;
+    public GoogleService(RDARetrofitProvider RDARetrofitProvider) {
+        this.RDARetrofitProvider = RDARetrofitProvider;
     }
 
     public void makeRequest(@Nullable String parameter, RDARequestListener<String> rdaRequestListener) {
 
-        retrofitProvider.makeRequest(
-                retrofitProvider.createRetrofit(GoogleServiceRetrofitInterfaces.class).makeRequest(), new RDARetrofitCallback<String>() {
+        RDARetrofitProvider.makeRequest(
+                RDARetrofitProvider.createRetrofit(GoogleServiceRetrofitInterfaces.class).makeRequest(), new RDARetrofitCallback<String>() {
                     @Override
                     public void onSuccess(String s) {
 

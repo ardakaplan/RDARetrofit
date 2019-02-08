@@ -50,7 +50,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @OnClick(R.id.button_test)
     void test() {
 
-        RDALogger.info("TEST");
+        RDALogger.info("LAHAANA");
 
 
         googleService.makeRequest("", new RDARequestListener<String>() {
