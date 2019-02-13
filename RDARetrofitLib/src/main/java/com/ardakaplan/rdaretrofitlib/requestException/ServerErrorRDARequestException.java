@@ -5,9 +5,9 @@ import retrofit2.Response;
 /**
  * Created by Arda Kaplan on 28-Dec-18 - 15:10
  */
-public class ServerRDARequestException extends RDARequestException {
+public class ServerErrorRDARequestException extends RDARequestException {
 
-    public ServerRDARequestException(Throwable cause, Response response) {
+    public ServerErrorRDARequestException(Throwable cause, Response response) {
         super(cause, response);
     }
 }

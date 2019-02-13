@@ -70,9 +70,6 @@ dependencies {
         //RDA-LOGGER
         implementation "com.github.ardakaplan:RDALogger:$rda_logger_version"
 
-        //GSON
-        implementation "com.google.code.gson:gson:$gson_version"
-
         //BUTTER KNIFE
         implementation "com.jakewharton:butterknife:$butter_knife_version"
 

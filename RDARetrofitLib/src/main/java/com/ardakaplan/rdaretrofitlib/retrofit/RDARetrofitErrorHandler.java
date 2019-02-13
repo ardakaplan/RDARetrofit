@@ -2,11 +2,12 @@ package com.ardakaplan.rdaretrofitlib.retrofit;
 
 import android.support.annotation.Nullable;
 
+import com.ardakaplan.rdaretrofitlib.requestException.AuthorizationErrorRDARequestException;
 import com.ardakaplan.rdaretrofitlib.requestException.NoNetworkRDARequestException;
 import com.ardakaplan.rdaretrofitlib.requestException.NotFoundRDARequestException;
 import com.ardakaplan.rdaretrofitlib.requestException.NullResponseRDARequestException;
 import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
-import com.ardakaplan.rdaretrofitlib.requestException.ServerRDARequestException;
+import com.ardakaplan.rdaretrofitlib.requestException.ServerErrorRDARequestException;
 import com.ardakaplan.rdaretrofitlib.requestException.UnknownRDARequestException;
 
 import java.net.UnknownHostException;
@@ -34,13 +35,17 @@ public class RDARetrofitErrorHandler {
 
                 switch (response.code()) {
 
+                    case 401:
+
+                        return new AuthorizationErrorRDARequestException(throwable, response);
+
                     case 404:
 
                         return new NotFoundRDARequestException(throwable, response);
 
                     case 500:
 
-                        return new ServerRDARequestException(throwable, response);
+                        return new ServerErrorRDARequestException(throwable, response);
 
                     default:
 
