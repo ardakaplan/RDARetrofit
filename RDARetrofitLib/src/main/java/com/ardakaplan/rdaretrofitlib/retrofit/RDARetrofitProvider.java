@@ -32,12 +32,12 @@ public class RDARetrofitProvider {
 
 
     private Retrofit.Builder retrofitBuilder;
-    private RDARetrofitErrorHandler RDARetrofitErrorHandler;
+    private RDARetrofitErrorHandler rdaRetrofitErrorHandler;
 
     @Inject
-    RDARetrofitProvider(RDARetrofitErrorHandler RDARetrofitErrorHandler) {
+    RDARetrofitProvider(RDARetrofitErrorHandler rdaRetrofitErrorHandler) {
 
-        this.RDARetrofitErrorHandler = RDARetrofitErrorHandler;
+        this.rdaRetrofitErrorHandler = rdaRetrofitErrorHandler;
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 
@@ -65,7 +65,7 @@ public class RDARetrofitProvider {
             @Override
             public void onResponse(Call<W> call, Response<W> response) {
 
-                RDARequestException rdaRequestException = RDARetrofitErrorHandler.checkError(response, null);
+                RDARequestException rdaRequestException = rdaRetrofitErrorHandler.checkError(response, null);
 
                 if (rdaRequestException == null) {
 
@@ -80,7 +80,7 @@ public class RDARetrofitProvider {
             @Override
             public void onFailure(Call<W> call, Throwable t) {
 
-                rdaRetrofitCallback.onError(RDARetrofitErrorHandler.checkError(null, t));
+                rdaRetrofitCallback.onError(rdaRetrofitErrorHandler.checkError(null, t));
             }
         });
     }

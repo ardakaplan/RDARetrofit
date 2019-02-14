@@ -23,6 +23,7 @@ import retrofit2.Response;
 @Singleton
 public class RDARetrofitErrorHandler {
 
+
     @Inject
     RDARetrofitErrorHandler() {
     }

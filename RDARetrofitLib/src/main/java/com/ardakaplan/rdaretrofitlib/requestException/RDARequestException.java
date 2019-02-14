@@ -1,5 +1,7 @@
 package com.ardakaplan.rdaretrofitlib.requestException;
 
+import com.ardakaplan.rdaretrofitlib.HttpError;
+
 import retrofit2.Response;
 
 /**
@@ -7,29 +9,21 @@ import retrofit2.Response;
  */
 public abstract class RDARequestException extends Exception {
 
-    protected Response response;
+    private HttpError httpError;
+    private Response response;
 
-    public RDARequestException(Throwable cause, Response response) {
+
+    public RDARequestException(HttpError httpError, Throwable cause, Response response) {
         super(cause);
+        this.httpError = httpError;
         this.response = response;
     }
 
-    public RDARequestException() {
-        super();
+    public HttpError getHttpError() {
+        return httpError;
     }
 
-
-    public RDARequestException(String message) {
-        super(message);
-    }
-
-
-    public RDARequestException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-
-    public RDARequestException(Throwable cause) {
-        super(cause);
+    public Response getResponse() {
+        return response;
     }
 }

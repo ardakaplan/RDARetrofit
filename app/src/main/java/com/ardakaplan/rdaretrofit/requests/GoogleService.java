@@ -17,17 +17,17 @@ import javax.inject.Singleton;
 @Singleton
 public class GoogleService extends BaseRequest {
 
-    private RDARetrofitProvider RDARetrofitProvider;
+    private RDARetrofitProvider rdaRetrofitProvider;
 
     @Inject
-    public GoogleService(RDARetrofitProvider RDARetrofitProvider) {
-        this.RDARetrofitProvider = RDARetrofitProvider;
+    public GoogleService(RDARetrofitProvider rdaRetrofitProvider) {
+        this.rdaRetrofitProvider = rdaRetrofitProvider;
     }
 
     public void makeRequest(@Nullable String parameter, RDARequestListener<String> rdaRequestListener) {
 
-        RDARetrofitProvider.makeRequest(
-                RDARetrofitProvider.createRetrofit(GoogleServiceRetrofitInterfaces.class).makeRequest(), new RDARetrofitCallback<String>() {
+        rdaRetrofitProvider.makeRequest(
+                rdaRetrofitProvider.createRetrofit(GoogleServiceRetrofitInterfaces.class).makeRequest(), new RDARetrofitCallback<String>() {
                     @Override
                     public void onSuccess(String s) {
 
