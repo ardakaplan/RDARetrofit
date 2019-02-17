@@ -45,6 +45,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
+    api 'com.github.ardakaplan:RDACommonMethods:development-SNAPSHOT'
+
     //RETROFIT
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"

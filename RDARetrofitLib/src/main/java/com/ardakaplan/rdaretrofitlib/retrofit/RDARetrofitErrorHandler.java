@@ -2,13 +2,7 @@ package com.ardakaplan.rdaretrofitlib.retrofit;
 
 import android.support.annotation.Nullable;
 
-import com.ardakaplan.rdaretrofitlib.requestException.AuthorizationErrorRDARequestException;
-import com.ardakaplan.rdaretrofitlib.requestException.NoNetworkRDARequestException;
-import com.ardakaplan.rdaretrofitlib.requestException.NotFoundRDARequestException;
-import com.ardakaplan.rdaretrofitlib.requestException.NullResponseRDARequestException;
-import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
-import com.ardakaplan.rdaretrofitlib.requestException.ServerErrorRDARequestException;
-import com.ardakaplan.rdaretrofitlib.requestException.UnknownRDARequestException;
+import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
 
 import java.net.UnknownHostException;
 
@@ -38,26 +32,26 @@ public class RDARetrofitErrorHandler {
 
                     case 401:
 
-                        return new AuthorizationErrorRDARequestException(throwable, response);
+                        return new RDARequestException(RDARequestException.HttpErrorType.AUTHENTICATION_ERROR);
 
                     case 404:
 
-                        return new NotFoundRDARequestException(throwable, response);
+                        return new RDARequestException(RDARequestException.HttpErrorType.NOT_FOUND_ERROR);
 
                     case 500:
 
-                        return new ServerErrorRDARequestException(throwable, response);
+                        return new RDARequestException(RDARequestException.HttpErrorType.SERVER_ERROR);
 
                     default:
 
-                        return new UnknownRDARequestException(throwable, response);
+                        return new RDARequestException(RDARequestException.HttpErrorType.UNKNOWN_ERROR);
                 }
 
             } else {
 
                 if (response.body() == null) {
 
-                    return new NullResponseRDARequestException(throwable, response);
+                    return new RDARequestException(RDARequestException.HttpErrorType.NULL_RESPONSE_ERROR);
 
                 } else {
 
@@ -69,11 +63,11 @@ public class RDARetrofitErrorHandler {
 
             if (throwable instanceof UnknownHostException) {
 
-                return new NoNetworkRDARequestException(throwable, response);
+                return new RDARequestException(RDARequestException.HttpErrorType.NO_NETWORK_ERROR);
 
             } else {
 
-                return null;
+                return new RDARequestException(RDARequestException.HttpErrorType.UNKNOWN_ERROR);
             }
         }
     }

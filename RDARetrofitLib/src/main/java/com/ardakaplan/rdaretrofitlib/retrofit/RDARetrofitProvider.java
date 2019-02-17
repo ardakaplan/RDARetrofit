@@ -1,7 +1,7 @@
 package com.ardakaplan.rdaretrofitlib.retrofit;
 
+import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
-import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
 import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;

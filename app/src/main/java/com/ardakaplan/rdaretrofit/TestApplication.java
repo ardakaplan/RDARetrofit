@@ -3,6 +3,7 @@ package com.ardakaplan.rdaretrofit;
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalogger.RDALogger;
+import com.ardakaplan.rdaretrofit.constants.SettingsForEnablesConstants;
 import com.ardakaplan.rdaretrofit.di.AppComponent;
 import com.ardakaplan.rdaretrofit.di.DaggerAppComponent;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
@@ -21,9 +22,16 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
 
         RDALogger.start(getString(R.string.app_name)).enableLogging(true);
 
-        //adjustments
-        RDARetrofitProvider.RetrofitManager.TIME_OUT = 10;
+
+        initRDARetrofitLib();
     }
+
+    private void initRDARetrofitLib() {
+        RDARetrofitProvider.RetrofitManager.BASE_URL = "https://www.swansybeauty.com/";
+        RDARetrofitProvider.RetrofitManager.TIME_OUT = 20;
+        RDARetrofitProvider.RetrofitManager.LOGGING_LEVEL = SettingsForEnablesConstants.LOGGING_LEVEL;
+    }
+
 
     @Override
     protected void initDagger() {

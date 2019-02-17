@@ -2,10 +2,10 @@ package com.ardakaplan.rdaretrofit.requests;
 
 import android.support.annotation.Nullable;
 
+import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
 import com.ardakaplan.rdaretrofit.requests.interfaces.GoogleServiceRetrofitInterfaces;
 import com.ardakaplan.rdaretrofitlib.RDARequestListener;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
-import com.ardakaplan.rdaretrofitlib.requestException.RDARequestException;
 import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
 
 import javax.inject.Inject;
@@ -37,9 +37,9 @@ public class GoogleService extends BaseRequest {
                     }
 
                     @Override
-                    public void onError(RDARequestException e) {
+                    public void onError(RDARequestException rdaRequestException) {
 
-                        rdaRequestListener.onError(e);
+                        rdaRequestListener.onError(rdaRequestException);
                     }
                 });
     }
