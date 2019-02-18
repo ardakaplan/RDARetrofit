@@ -4,6 +4,8 @@ import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
 import com.google.gson.GsonBuilder;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -26,6 +28,18 @@ public class RDARetrofitProvider {
         public static int TIME_OUT = 20;
         public static HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.NONE;
         public static String BASE_URL = "http://www.google.com/";
+        public static List<RegisterTypeAdapter> registerTypeAdapters;
+    }
+
+    public static class RegisterTypeAdapter {
+
+        private Type type;
+        private Object typeAdapter;
+
+        public RegisterTypeAdapter(Type type, Object typeAdapter) {
+            this.type = type;
+            this.typeAdapter = typeAdapter;
+        }
     }
 
     //public adjustable fields
@@ -40,6 +54,14 @@ public class RDARetrofitProvider {
         this.rdaRetrofitErrorHandler = rdaRetrofitErrorHandler;
 
         GsonBuilder gsonBuilder = new GsonBuilder();
+
+        if (RetrofitManager.registerTypeAdapters != null && RetrofitManager.registerTypeAdapters.size() > 0) {
+
+            for (RegisterTypeAdapter registerTypeAdapter : RetrofitManager.registerTypeAdapters) {
+
+                gsonBuilder.registerTypeAdapter(registerTypeAdapter.type, registerTypeAdapter.typeAdapter);
+            }
+        }
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 

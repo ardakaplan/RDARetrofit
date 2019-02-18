@@ -29,10 +29,6 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     GoogleService googleService;
 
-    @Override
-    protected void adjustApplicationTheme() {
-
-    }
 
     @SuppressLint("MissingSuperCall")
     @Override
