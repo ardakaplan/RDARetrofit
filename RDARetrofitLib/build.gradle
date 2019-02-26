@@ -72,9 +72,6 @@ dependencies {
         //BUTTER KNIFE
         compileOnly "com.jakewharton:butterknife:$butter_knife_version"
 
-        //GSON
-        compileOnly "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
-
     } else {
 
         println("RDALibray -> CLOUD")
