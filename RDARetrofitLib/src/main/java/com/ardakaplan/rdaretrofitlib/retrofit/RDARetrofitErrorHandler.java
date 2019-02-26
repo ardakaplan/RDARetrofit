@@ -38,6 +38,10 @@ public class RDARetrofitErrorHandler {
 
                         return new RDARequestException(RDARequestException.HttpErrorType.NOT_FOUND_ERROR);
 
+                    case 405://TODO 405 Method Not Allowed
+
+                        return new RDARequestException(RDARequestException.HttpErrorType.UNKNOWN_ERROR);
+
                     case 500:
 
                         return new RDARequestException(RDARequestException.HttpErrorType.SERVER_ERROR);
