@@ -1,6 +1,6 @@
 package com.ardakaplan.rdaretrofitlib.retrofit;
 
-import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
+import com.ardakaplan.rdalibrary.RDARequestException;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
 import com.google.gson.GsonBuilder;
 

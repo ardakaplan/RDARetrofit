@@ -2,7 +2,7 @@ package com.ardakaplan.rdaretrofitlib.retrofit;
 
 import android.support.annotation.Nullable;
 
-import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
+import com.ardakaplan.rdalibrary.RDARequestException;
 
 import java.net.UnknownHostException;
 
