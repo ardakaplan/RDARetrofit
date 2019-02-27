@@ -2,10 +2,11 @@ package com.ardakaplan.rdaretrofit.requests;
 
 import android.support.annotation.Nullable;
 
-import com.ardakaplan.rdalibrary.RDARequestException;
+import com.ardakaplan.rdalibrary.base.RDAException;
 import com.ardakaplan.rdaretrofit.requests.interfaces.GoogleServiceRetrofitInterfaces;
 import com.ardakaplan.rdaretrofitlib.RDARequestListener;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
+import com.ardakaplan.rdaretrofitlib.exceptions.RDARequestException;
 import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
 
 import javax.inject.Inject;
