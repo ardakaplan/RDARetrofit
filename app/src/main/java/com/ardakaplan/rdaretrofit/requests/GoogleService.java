@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 
 /**
  * Created by Arda Kaplan on 31-Jan-19 - 13:25
- * 
+ *
  */
 @Singleton
 public class GoogleService extends BaseRequest {
