@@ -1,6 +1,6 @@
-package com.ardakaplan.rdaretrofitlib.exceptions.interaction_exceptions;
+package com.ardakaplan.rdaretrofitlib.exceptions.interaction;
 
-import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
+import com.ardakaplan.rdalibrary.base.exceptions.RDAInteractionException;
 
 /**
  * Created by Arda Kaplan at 2/13/2019

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Button;
 
-import com.ardakaplan.rdalibrary.base.RDAException;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofit.R;

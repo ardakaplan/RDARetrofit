@@ -1,6 +1,6 @@
 package com.ardakaplan.rdaretrofitlib.exceptions;
 
-import com.ardakaplan.rdalibrary.base.RDAException;
+import com.ardakaplan.rdalibrary.base.exceptions.RDAException;
 import com.ardakaplan.rdaretrofitlib.HttpErrorType;
 
 /**
