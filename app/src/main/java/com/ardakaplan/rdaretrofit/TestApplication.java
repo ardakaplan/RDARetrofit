@@ -6,7 +6,6 @@ import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofit.constants.SettingsForEnablesConstants;
 import com.ardakaplan.rdaretrofit.di.AppComponent;
 import com.ardakaplan.rdaretrofit.di.DaggerAppComponent;
-import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
 import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
 
 /**

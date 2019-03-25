@@ -1,6 +1,6 @@
 package com.ardakaplan.rdaretrofitlib;
 
-import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
+import com.ardakaplan.rdaretrofitlib.exceptions.RDARequestException;
 
 /**
  * Created by Arda Kaplan on 01-Feb-19 - 09:26
