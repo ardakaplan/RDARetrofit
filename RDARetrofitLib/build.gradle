@@ -28,6 +28,7 @@ android {
         targetSdkVersion androidTargetSdkVersion
         versionCode 1
         versionName "1.0.0"
+        project.version = "0.0.1.0.0.4"
         project.archivesBaseName = "RDARetrofit"
     }
 
