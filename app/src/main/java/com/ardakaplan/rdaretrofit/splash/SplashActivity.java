@@ -53,7 +53,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
             @Override
             public void onSuccess(String s) {
 
-                RDALogger.info("ssss +" + s);
+//                RDALogger.info("ssss +" + s);
             }
 
             @Override

@@ -23,8 +23,6 @@ public class RDARetrofitErrorHandler {
     @Inject
     RDARetrofitErrorHandler(RDAApplicationHelpers rdaApplicationHelpers) {
 
-
-        Log.i("AAAA","AAAAAAA + "+ rdaApplicationHelpers.getAppVersionName());
     }
 
     <W> RDARequestException checkError(@Nullable Response<W> response, @Nullable Throwable throwable) {

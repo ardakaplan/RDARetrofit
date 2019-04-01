@@ -1,5 +1,6 @@
 package com.ardakaplan.rdaretrofitlib.retrofit;
 
+import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofitlib.RDARetrofitCallback;
 import com.ardakaplan.rdaretrofitlib.exceptions.RDARequestException;
 import com.google.gson.GsonBuilder;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -64,11 +66,25 @@ public class RDARetrofitProvider {
         }
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        {
+            interceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
+        }
 
-        interceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
+//        HttpLoggingInterceptor.Logger fileLogger = new HttpLoggingInterceptor.Logger() {
+//            @Override
+//            public void log(String s) {
+//
+//                RDALogger.info("LOGGGGG " + s);
+//            }
+//        };
+
+//        HttpLoggingInterceptor fileLoggerInterceptor = new HttpLoggingInterceptor(fileLogger);
+//        fileLoggerInterceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
+
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
+//                .addInterceptor(fileLoggerInterceptor)
                 .readTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
                 .build();
