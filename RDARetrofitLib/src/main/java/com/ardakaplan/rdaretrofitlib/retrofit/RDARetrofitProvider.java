@@ -70,21 +70,21 @@ public class RDARetrofitProvider {
             interceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
         }
 
-//        HttpLoggingInterceptor.Logger fileLogger = new HttpLoggingInterceptor.Logger() {
-//            @Override
-//            public void log(String s) {
-//
-//                RDALogger.info("LOGGGGG " + s);
-//            }
-//        };
+        HttpLoggingInterceptor.Logger fileLogger = new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String s) {
 
-//        HttpLoggingInterceptor fileLoggerInterceptor = new HttpLoggingInterceptor(fileLogger);
-//        fileLoggerInterceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
+                RDALogger.logHttpRequest(s);
+            }
+        };
+
+        HttpLoggingInterceptor fileLoggerInterceptor = new HttpLoggingInterceptor(fileLogger);
+        fileLoggerInterceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
 
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-//                .addInterceptor(fileLoggerInterceptor)
+//                .addInterceptor(interceptor)
+                .addInterceptor(fileLoggerInterceptor)
                 .readTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
                 .build();

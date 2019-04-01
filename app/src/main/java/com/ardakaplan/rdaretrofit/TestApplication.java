@@ -8,6 +8,8 @@ import com.ardakaplan.rdaretrofit.di.AppComponent;
 import com.ardakaplan.rdaretrofit.di.DaggerAppComponent;
 import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
 
+import java.util.Set;
+
 /**
  * Created by Arda Kaplan on 10.08.2018 - 17:44
  */
@@ -19,7 +21,7 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
     public void onCreate() {
         super.onCreate();
 
-        RDALogger.start(getString(R.string.app_name)).enableLogging(true);
+        RDALogger.start(getString(R.string.app_name)).enableLogging(SettingsForEnablesConstants.ENABLE_RDA_LOGGER).enableHttpLogging(SettingsForEnablesConstants.ENABLE_HTTP_LOGS);
 
 
         initRDARetrofitLib();
