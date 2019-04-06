@@ -10,6 +10,8 @@ import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
 
 import java.util.Set;
 
+import okhttp3.logging.HttpLoggingInterceptor;
+
 /**
  * Created by Arda Kaplan on 10.08.2018 - 17:44
  */
@@ -31,6 +33,21 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
         RDARetrofitProvider.RetrofitManager.BASE_URL = "https://www.swansybeauty.com/";
         RDARetrofitProvider.RetrofitManager.TIME_OUT = 20;
         RDARetrofitProvider.RetrofitManager.LOGGING_LEVEL = SettingsForEnablesConstants.LOGGING_LEVEL;
+
+        {
+            HttpLoggingInterceptor.Logger fileLogger = new HttpLoggingInterceptor.Logger() {
+                @Override
+                public void log(String s) {
+
+                    RDALogger.logHttpRequest(s);
+                }
+            };
+
+            HttpLoggingInterceptor fileLoggerInterceptor = new HttpLoggingInterceptor(fileLogger);
+            fileLoggerInterceptor.setLevel(SettingsForEnablesConstants.LOGGING_LEVEL);
+
+            RDARetrofitProvider.RetrofitManager.httpLoggingForApp = fileLoggerInterceptor;
+        }
     }
 
 

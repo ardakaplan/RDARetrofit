@@ -29,6 +29,9 @@ public class RDARetrofitProvider {
         public static HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.NONE;
         public static String BASE_URL = "http://www.google.com/";
         public static List<RegisterTypeAdapter> registerTypeAdapters;
+
+        //if you need http logs
+        public static HttpLoggingInterceptor httpLoggingForApp;
     }
 
     public static class RegisterTypeAdapter {
@@ -68,27 +71,22 @@ public class RDARetrofitProvider {
             interceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
         }
 
-//        HttpLoggingInterceptor.Logger fileLogger = new HttpLoggingInterceptor.Logger() {
-//            @Override
-//            public void log(String s) {
-//
-//                RDALogger.logHttpRequest(s);
-//            }
-//        };
-//
-//        HttpLoggingInterceptor fileLoggerInterceptor = new HttpLoggingInterceptor(fileLogger);
-//        fileLoggerInterceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
 
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-//                .addInterceptor(fileLoggerInterceptor)
-                .readTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
+        builder.addInterceptor(interceptor);
+
+        if (RetrofitManager.httpLoggingForApp != null) {
+
+            builder.addInterceptor(RetrofitManager.httpLoggingForApp);
+        }
+
+        OkHttpClient okHttpClient = builder.readTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
                 .build();
 
         retrofitBuilder = new Retrofit.Builder()
-                .client(client)
+                .client(okHttpClient)
                 .baseUrl(RetrofitManager.BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));

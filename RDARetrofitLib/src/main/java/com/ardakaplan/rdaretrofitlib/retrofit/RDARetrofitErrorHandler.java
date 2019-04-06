@@ -1,9 +1,7 @@
 package com.ardakaplan.rdaretrofitlib.retrofit;
 
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
 import com.ardakaplan.rdaretrofitlib.HttpErrorType;
 import com.ardakaplan.rdaretrofitlib.exceptions.RDARequestException;
 
@@ -21,7 +19,7 @@ import retrofit2.Response;
 public class RDARetrofitErrorHandler {
 
     @Inject
-    RDARetrofitErrorHandler(RDAApplicationHelpers rdaApplicationHelpers) {
+    RDARetrofitErrorHandler() {
 
     }
 
