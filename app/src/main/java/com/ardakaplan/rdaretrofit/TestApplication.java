@@ -6,11 +6,6 @@ import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofit.constants.SettingsForEnablesConstants;
 import com.ardakaplan.rdaretrofit.di.AppComponent;
 import com.ardakaplan.rdaretrofit.di.DaggerAppComponent;
-import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
-
-import java.util.Set;
-
-import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by Arda Kaplan on 10.08.2018 - 17:44
@@ -24,32 +19,7 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
         super.onCreate();
 
         RDALogger.start(getString(R.string.app_name)).enableLogging(SettingsForEnablesConstants.ENABLE_RDA_LOGGER).enableHttpLogging(SettingsForEnablesConstants.ENABLE_HTTP_LOGS);
-
-
-        initRDARetrofitLib();
     }
-
-    private void initRDARetrofitLib() {
-        RDARetrofitProvider.RetrofitManager.BASE_URL = "https://www.swansybeauty.com/";
-        RDARetrofitProvider.RetrofitManager.TIME_OUT = 20;
-        RDARetrofitProvider.RetrofitManager.LOGGING_LEVEL = SettingsForEnablesConstants.LOGGING_LEVEL;
-
-        {
-            HttpLoggingInterceptor.Logger fileLogger = new HttpLoggingInterceptor.Logger() {
-                @Override
-                public void log(String s) {
-
-                    RDALogger.logHttpRequest(s);
-                }
-            };
-
-            HttpLoggingInterceptor fileLoggerInterceptor = new HttpLoggingInterceptor(fileLogger);
-            fileLoggerInterceptor.setLevel(SettingsForEnablesConstants.LOGGING_LEVEL);
-
-            RDARetrofitProvider.RetrofitManager.httpLoggingForApp = fileLoggerInterceptor;
-        }
-    }
-
 
     @Override
     protected void initDagger() {

@@ -17,12 +17,10 @@ public final class SettingsForEnablesConstants {
     public static final boolean ENABLE_RDA_LOGGER = true;
     public static final boolean ENABLE_HTTP_LOGS = true;
     public static final boolean ENABLE_LIFE_CYCLE = false;
-    public static final boolean ENABLE_FABRIC = false;
     //#IFDEF 'Release'
 //    public static final HttpLoggingInterceptor.Level LOGGING_LEVEL=HttpLoggingInterceptor.Level.NONE;
     //public static final boolean ENABLE_RDA_LOGGER = false;
     //public static final boolean ENABLE_LIFE_CYCLE = false;
-    //public static final boolean ENABLE_FABRIC = true;
     //#ENDIF
 
     private SettingsForEnablesConstants() {
