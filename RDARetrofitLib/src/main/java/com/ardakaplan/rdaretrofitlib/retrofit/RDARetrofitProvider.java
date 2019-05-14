@@ -5,7 +5,6 @@ import com.ardakaplan.rdaretrofitlib.exceptions.RDARequestException;
 import com.google.gson.GsonBuilder;
 
 import java.lang.reflect.Type;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -23,14 +22,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Singleton
 public class RDARetrofitProvider {
 
-    public static final class RetrofitManager {
-
-        public static int TIME_OUT = 20;
-        public static HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.NONE;
-        public static String BASE_URL = "http://www.google.com/";
-        public static List<RegisterTypeAdapter> registerTypeAdapters;
-    }
-
     public static class RegisterTypeAdapter {
 
         private Type type;
@@ -42,40 +33,47 @@ public class RDARetrofitProvider {
         }
     }
 
-    //public adjustable fields
-
-
     private Retrofit.Builder retrofitBuilder;
     private RDARetrofitErrorHandler rdaRetrofitErrorHandler;
 
     @Inject
-    RDARetrofitProvider(RDARetrofitErrorHandler rdaRetrofitErrorHandler) {
+    RDARetrofitProvider(RDARetrofitErrorHandler rdaRetrofitErrorHandler, RetrofitSettings retrofitSettings) {
 
         this.rdaRetrofitErrorHandler = rdaRetrofitErrorHandler;
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 
-        if (RetrofitManager.registerTypeAdapters != null && RetrofitManager.registerTypeAdapters.size() > 0) {
+        if (retrofitSettings.getREGISTER_TYPE_ADAPTERS() != null && retrofitSettings.getREGISTER_TYPE_ADAPTERS().size() > 0) {
 
-            for (RegisterTypeAdapter registerTypeAdapter : RetrofitManager.registerTypeAdapters) {
+            for (RegisterTypeAdapter registerTypeAdapter : retrofitSettings.getREGISTER_TYPE_ADAPTERS()) {
 
                 gsonBuilder.registerTypeAdapter(registerTypeAdapter.type, registerTypeAdapter.typeAdapter);
             }
         }
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        {
+            interceptor.setLevel(retrofitSettings.getLOGGING_LEVEL());
+        }
 
-        interceptor.setLevel(RetrofitManager.LOGGING_LEVEL);
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .readTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
-                .connectTimeout(RetrofitManager.TIME_OUT, TimeUnit.SECONDS)
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        builder.addInterceptor(interceptor);
+
+        //TODO harici loglama
+//        if (retrofitSettings.getHTTP_LOGGING_INTERCEPTOR() != null) {
+//
+//            builder.addInterceptor(retrofitSettings.httpLoggingForApp);
+//        }
+
+        OkHttpClient okHttpClient = builder.readTimeout(retrofitSettings.getTIME_OUT(), TimeUnit.SECONDS)
+                .connectTimeout(retrofitSettings.getTIME_OUT(), TimeUnit.SECONDS)
                 .build();
 
         retrofitBuilder = new Retrofit.Builder()
-                .client(client)
-                .baseUrl(RetrofitManager.BASE_URL)
+                .client(okHttpClient)
+                .baseUrl(retrofitSettings.getBASE_URL())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
     }

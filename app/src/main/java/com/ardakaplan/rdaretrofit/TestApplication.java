@@ -6,7 +6,6 @@ import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofit.constants.SettingsForEnablesConstants;
 import com.ardakaplan.rdaretrofit.di.AppComponent;
 import com.ardakaplan.rdaretrofit.di.DaggerAppComponent;
-import com.ardakaplan.rdaretrofitlib.retrofit.RDARetrofitProvider;
 
 /**
  * Created by Arda Kaplan on 10.08.2018 - 17:44
@@ -19,18 +18,8 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
     public void onCreate() {
         super.onCreate();
 
-        RDALogger.start(getString(R.string.app_name)).enableLogging(true);
-
-
-        initRDARetrofitLib();
+        RDALogger.start(getString(R.string.app_name)).enableLogging(SettingsForEnablesConstants.ENABLE_RDA_LOGGER).enableHttpLogging(SettingsForEnablesConstants.ENABLE_HTTP_LOGS);
     }
-
-    private void initRDARetrofitLib() {
-        RDARetrofitProvider.RetrofitManager.BASE_URL = "https://www.swansybeauty.com/";
-        RDARetrofitProvider.RetrofitManager.TIME_OUT = 20;
-        RDARetrofitProvider.RetrofitManager.LOGGING_LEVEL = SettingsForEnablesConstants.LOGGING_LEVEL;
-    }
-
 
     @Override
     protected void initDagger() {
