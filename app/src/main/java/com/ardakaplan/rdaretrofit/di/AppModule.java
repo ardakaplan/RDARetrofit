@@ -18,7 +18,7 @@ public class AppModule {
             @Override
             public void log(String s) {
 
-                RDALogger.logHttpRequest(s);
+                RDALogger.logHttpRequest("EEEE " + s);
             }
         };
 
@@ -26,7 +26,7 @@ public class AppModule {
         fileLoggerInterceptor.setLevel(SettingsForEnablesConstants.LOGGING_LEVEL);
 
         return new RetrofitSettings(20,
-                "https://www.swansybeauty.com/",
+                "https://www.google.com/",
                 SettingsForEnablesConstants.LOGGING_LEVEL, null, fileLoggerInterceptor);
     }
 
