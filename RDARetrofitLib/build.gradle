@@ -1,11 +1,3 @@
-
-scmVersion {
-    tag {
-        prefix = 'RDARetrofitLib'
-    }
-}
-project.version = scmVersion.version
-
 apply plugin: 'com.android.library'
 apply from: '../deployment.gradle'
 
@@ -33,15 +25,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             consumerProguardFiles 'proguard-rules.pro'
         }
-
-
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
