@@ -4,22 +4,30 @@ buildscript {
 
         google()
         jcenter()
-        mavenCentral()
-
-        dependencies {
-
-            classpath 'com.android.tools.build:gradle:3.2.1'
-        }
     }
+    dependencies {
 
-    allprojects {
-        repositories {
-            maven { url 'https://jitpack.io' }
-            google()
-            jcenter()
+        classpath 'com.android.tools.build:gradle:3.2.1'
+    }
+}
+
+plugins {
+    id 'com.gradle.build-scan' version '1.16'
+}
 
 
-        }
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+
+    publishAlways()
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+        google()
+        jcenter()
     }
 }
 
