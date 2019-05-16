@@ -4,7 +4,6 @@ buildscript {
 
         google()
         jcenter()
-        mavenCentral()
     }
     dependencies {
 
@@ -14,8 +13,8 @@ buildscript {
 
 plugins {
     id 'com.gradle.build-scan' version '1.16'
-    id 'pl.allegro.tech.build.axion-release' version '1.10.0'
 }
+
 
 buildScan {
     termsOfServiceUrl = 'https://gradle.com/terms-of-service'
@@ -29,14 +28,11 @@ allprojects {
         maven { url 'https://jitpack.io' }
         google()
         jcenter()
-
-
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
 
 apply from: 'dependencies.gradle'

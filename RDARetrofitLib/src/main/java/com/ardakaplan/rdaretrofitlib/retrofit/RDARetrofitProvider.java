@@ -61,11 +61,10 @@ public class RDARetrofitProvider {
 
         builder.addInterceptor(interceptor);
 
-        //TODO harici loglama
-//        if (retrofitSettings.getHTTP_LOGGING_INTERCEPTOR() != null) {
-//
-//            builder.addInterceptor(retrofitSettings.httpLoggingForApp);
-//        }
+        if (retrofitSettings.getHTTP_LOGGING_INTERCEPTOR() != null) {
+
+            builder.addInterceptor(retrofitSettings.getHTTP_LOGGING_INTERCEPTOR());
+        }
 
         OkHttpClient okHttpClient = builder.readTimeout(retrofitSettings.getTIME_OUT(), TimeUnit.SECONDS)
                 .connectTimeout(retrofitSettings.getTIME_OUT(), TimeUnit.SECONDS)
