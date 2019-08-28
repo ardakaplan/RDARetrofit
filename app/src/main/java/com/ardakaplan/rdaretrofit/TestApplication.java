@@ -2,7 +2,6 @@ package com.ardakaplan.rdaretrofit;
 
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
-import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofit.constants.SettingsForEnablesConstants;
 import com.ardakaplan.rdaretrofit.di.AppComponent;
 import com.ardakaplan.rdaretrofit.di.DaggerAppComponent;
@@ -12,20 +11,27 @@ import com.ardakaplan.rdaretrofit.di.DaggerAppComponent;
  */
 public class TestApplication extends RDAApplication implements HasCustomActivityInjector {
 
-    private static AppComponent appComponent;
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    protected String getRDALoggerTag() {
+        return getString(R.string.app_name);
+    }
 
-        RDALogger.start(getString(R.string.app_name)).enableLogging(SettingsForEnablesConstants.ENABLE_RDA_LOGGER).enableHttpLogging(SettingsForEnablesConstants.ENABLE_HTTP_LOGS);
+    @Override
+    protected boolean doesRDALoggerWork() {
+        return SettingsForEnablesConstants.ENABLE_RDA_LOGGER;
     }
 
     @Override
     protected void initDagger() {
 
-        appComponent = DaggerAppComponent.builder().application(this).build();
+        AppComponent appComponent = DaggerAppComponent.builder().application(this).build();
 
         appComponent.inject(this);
+    }
+
+    @Override
+    protected void initRDADialog() {
+
     }
 }
