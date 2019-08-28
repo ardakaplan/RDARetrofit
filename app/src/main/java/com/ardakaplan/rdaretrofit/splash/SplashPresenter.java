@@ -1,6 +1,6 @@
 package com.ardakaplan.rdaretrofit.splash;
 
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAPresenter;
+import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenter;
 import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdaretrofit.requests.GoogleService;
 import com.ardakaplan.rdaretrofitlib.RDARequestListener;
