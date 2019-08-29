@@ -40,7 +40,7 @@ ext {
 
     //RDA LIBS VERSION
     rda_logger_version = "1.0.0"
-    rda_lib_version = "99884df688"
+    rda_lib_version = "1.1.2"
 
     use_rda_lib_from_local = properties != null ? Boolean.valueOf(localProperties.getProperty("use_rda_lib_from_local")) : false
 
