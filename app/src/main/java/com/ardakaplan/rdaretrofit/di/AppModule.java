@@ -25,7 +25,7 @@ public class AppModule {
         HttpLoggingInterceptor fileLoggerInterceptor = new HttpLoggingInterceptor(fileLogger);
         fileLoggerInterceptor.setLevel(SettingsForEnablesConstants.LOGGING_LEVEL);
 
-        return new RetrofitSettings(20,
+        return new RetrofitSettings(10,
                 "https://www.google.com/",
                 SettingsForEnablesConstants.LOGGING_LEVEL, null, fileLoggerInterceptor);
     }
